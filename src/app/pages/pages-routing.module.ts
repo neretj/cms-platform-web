@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../pages/home/home.component';
+<<<<<<< HEAD
+=======
+import { ProductPageComponent } from './product/product-page.component';
+>>>>>>> f913468... new branch develop
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent
   },
   {
+<<<<<<< HEAD
     path: 'product', 
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule), data: {
+=======
+    path: 'product', component: ProductPageComponent, data: {
+>>>>>>> f913468... new branch develop
       breadcrumb: 'Products'
     }
   },

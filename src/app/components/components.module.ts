@@ -16,21 +16,32 @@ import { MaterialComponentsModule } from '../pages/material-component/material.m
 import { AuthInterceptor } from '../helpers/auth.interceptor';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { NotificationTableComponent } from './notification/notification-table/notification-table.component';
+<<<<<<< HEAD
 import { ImageUploaderComponent } from './uploader/image-uploader-component/image-uploader.component';
+=======
+>>>>>>> f913468... new branch develop
 
 @NgModule({
     declarations: [
         ProductListComponent,
         OrderListComponent,
         NotificationListComponent,
+<<<<<<< HEAD
         NotificationTableComponent,
         ImageUploaderComponent
+=======
+        NotificationTableComponent
+>>>>>>> f913468... new branch develop
     ],
     exports: [
         ProductListComponent,
         OrderListComponent,
+<<<<<<< HEAD
         NotificationListComponent,
         ImageUploaderComponent
+=======
+        NotificationListComponent
+>>>>>>> f913468... new branch develop
     ],
     imports: [
         RouterModule,

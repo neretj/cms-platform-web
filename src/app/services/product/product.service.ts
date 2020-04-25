@@ -99,7 +99,14 @@ export class ProductService implements Resolve<any> {
   }
 
   save(product: Product) {
+<<<<<<< HEAD
     return this._httpClient.post(API_URL + 'create', product).pipe(
+=======
+    return this._httpClient.post(API_URL + 'create', {
+      params: new HttpParams()
+        .set('product', product.toString())
+    }).pipe(
+>>>>>>> f913468... new branch develop
       map(res => res['content'])
     );
   }
