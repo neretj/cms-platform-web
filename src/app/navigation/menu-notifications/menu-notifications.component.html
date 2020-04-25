@@ -1,0 +1,28 @@
+<button mat-icon-button [matMenuTriggerFor]="notificationMenuBtn" fxShow.lt-md="true" fxShow.gt-sm="true">
+    <mat-icon>notification_important</mat-icon>
+</button>
+
+<mat-menu #notificationMenuBtn="matMenu">
+    <div *ngFor="let i of notifications">
+        <span>
+            <button href="" mat-menu-item>
+                <span mat-icon-button>
+                    <mat-icon>
+                        <div *ngIf="i.type == notifTypes.ORDER">
+                            shopping_basket
+                        </div>
+                        <div *ngIf="i.type == notifTypes.ACTION">
+                            report_problem
+                        </div>
+                        <div *ngIf="i.type == notifTypes.REGISTER">
+                            supervised_user_circle
+                        </div>
+                    </mat-icon>
+                </span>
+                <span>
+                    {{i.description}}
+                </span>
+            </button>
+        </span>
+    </div>
+</mat-menu>

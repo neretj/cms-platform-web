@@ -1,0 +1,110 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #menusidenav id="menu-sidebar" fixedInViewport="true" [(mode)]="over" [(opened)]="opened"
+    class="bottom-to-top">
+
+    <div id="menu-sidebar-label" class="py-3" fxLayout="row" fxLayoutAlign="space-around right" fxLayoutGap="7px">
+      <a fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">
+        <span class="lead">Rexford</span>
+      </a>
+      <a class="collapse-icon" (click)="opened = !opened">
+        <mat-icon>reorder</mat-icon>
+      </a>
+    </div>
+
+    <div class="mt-3">
+
+      <!-- <div *ngFor="let submenu of menuitems">
+          <mat-nav-list>
+            <a mat-list-item href="submenu.href" routerLink="submenu.routerLink"
+              routerLinkActive="mat-list-item-active">
+              <mat-icon class="nav-icon">{{submenu.Name}}</mat-icon>
+              <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">Homepage</span>
+            </a>
+          </mat-nav-list>
+      </div> -->
+
+      <mat-nav-list>
+        <a mat-list-item href="/home" routerLink="/home" routerLinkActive="mat-list-item-active">
+          <mat-icon class="nav-icon">home</mat-icon>
+          <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">Homepage</span>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item href="/dashboard" routerLink="/dashboard" routerLinkActive="mat-list-item-active">
+          <mat-icon class="nav-icon">ballot</mat-icon>
+          <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">Dashboard</span>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item href="/user" routerLink="/user" routerLinkActive="mat-list-item-active">
+          <mat-icon class="nav-icon">account_circle</mat-icon>
+          <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">User</span>
+        </a>
+      </mat-nav-list>
+
+      <mat-nav-list>
+        <a mat-list-item href="/product/list" routerLink="/product/list" routerLinkActive="mat-list-item-active">
+          <mat-icon class="nav-icon">list</mat-icon>
+          <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">Products</span>
+        </a>
+      </mat-nav-list>
+
+      <mat-accordion multi="true" [displayMode]="displayMode">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header fxLayout="row" [expandedHeight]="expandHeight" [collapsedHeight]="collapseHeight">
+            <mat-panel-title>
+              <mat-icon class="nav-icon">dashboard</mat-icon>
+              <span fxHide [fxHide.gt-sm]="!opened" [fxHide.xs]="false">Material</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item><a href="/material/button" routerLink="/material/button" mat-menu-item>Buttons</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/chips" routerLink="/material/chips" mat-menu-item>Chips</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/dialog" routerLink="/material/dialog" mat-menu-item>Dialog</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/expansion" routerLink="/material/expansion" mat-menu-item>Expansion</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/grid" routerLink="/material/grid" mat-menu-item>Grid</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/lists" routerLink="/material/lists" mat-menu-item>Lists</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/menu" routerLink="/material/menu" mat-menu-item>Menu</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/progress" routerLink="/material/progress" mat-menu-item>Progress</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/progress-snipper" routerLink="/material/progress-snipper"
+                mat-menu-item>Progress
+                Snipper</a></mat-list-item>
+            <mat-list-item><a href="/material/slide-toggle" routerLink="/material/slide-toggle" mat-menu-item>Slide
+                Toggle</a></mat-list-item>
+            <mat-list-item><a href="/material/slider" routerLink="/material/slider" mat-menu-item>Slider</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/snackbar" routerLink="/material/snackbar" mat-menu-item>Snackbar</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/stepper" routerLink="material/stepper" mat-menu-item>Stepper</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/tabs" routerLink="/material/tabs" mat-menu-item>Tabs</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/toolbar" routerLink="/material/toolbar" mat-menu-item>Toolbar</a>
+            </mat-list-item>
+            <mat-list-item><a href="/material/tooltip" routerLink="/material/tooltip" mat-menu-item>Tooltip</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+
+  </mat-sidenav>
+
+  <!-- MENU HORIZONTAL-->
+  <mat-sidenav-content>
+    <app-menu [sidenavToggle]="menusidenav"></app-menu>
+    <app-submenu></app-submenu>
+    <!-- CONTENT -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

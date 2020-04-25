@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidenav()" fxShow.sm="true" fxShow.gt-sm="false">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>
+    <button href="/home" routerLink="home" mat-button>
+      <span>Home</span>
+    </button>
+
+    <!-- ACCOUNT SECTION -->
+
+    <span class="spacer"></span>
+
+    <app-menu-notifications></app-menu-notifications>
+
+    <app-menu-account></app-menu-account>
+    
+  </mat-toolbar-row>
+</mat-toolbar>

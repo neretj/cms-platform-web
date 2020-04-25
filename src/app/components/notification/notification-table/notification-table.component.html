@@ -1,0 +1,60 @@
+<mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="checkbox">
+        <mat-cell *matCellDef="let row">
+            <span>
+                <mat-checkbox>Check me!</mat-checkbox>
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span matTooltip="{{row.status}}" matTooltipPosition="above">
+                <mat-icon>fiber_manual_record</mat-icon>
+            </span> </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span ngClass="status">
+                <mat-icon>
+                    <div *ngIf="row.type == notifTypes.NEW_ORDER">
+                        shopping_basket
+                    </div>
+                    <div *ngIf="row.type == notifTypes.ALERT">
+                        report_problem
+                    </div>
+                    <div *ngIf="row.type == notifTypes.NEW_REGISTER">
+                        supervised_user_circle
+                    </div>
+                    <div *ngIf="row.type == notifTypes.ACTION_PENDING">
+                        beenhere
+                    </div>
+                </mat-icon>
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"><span ngClass="description">{{row.description}} </span></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"><span ngClass="creationDate">{{parseDate(row.creationDate)}} </span></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+</mat-table>
+
+<mat-card-footer *ngIf="showPagination">
+    <mat-paginator [length]="notifications?.length" [pageSize]="size"></mat-paginator>
+</mat-card-footer>

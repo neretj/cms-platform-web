@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="breadcrum-icon-container">
+       <mat-icon class="breadcrum-icon center">home</mat-icon>
+    </span>
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        {{ breadcrumb.label }}
+      </span>
+    </li>
+  </mat-toolbar-row>
+</mat-toolbar>
