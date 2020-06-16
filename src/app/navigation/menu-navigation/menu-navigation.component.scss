@@ -1,0 +1,160 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import '../../../assets/styles/variable.scss';
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+}
+
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm,
+.container {
+  max-width: 100%;
+}
+
+.mat-drawer {
+  background-color: $sidebar;
+}
+
+mat-sidenav {
+  width: 250px;
+  background-color: $sidebar;
+  padding-top: 0px;
+
+  mat-accordion {
+
+    mat-expansion-panel {
+
+      mat-expansion-panel-header {
+        background-color: $sidebar;
+        border-color: none;
+        border-radius: none !important;
+      }
+    }
+  }
+
+  #menu-sidebar-label {
+    color: $sidebar-text;
+    background: rgb($sidebar-dark, .6) !important;
+    @include mat-elevation(2);
+
+    .collapse-icon {
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    mat-icon {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+mat-nav-list {
+  background-color: $sidebar;
+
+  .mat-list-item {
+    background-color: $sidebar;
+    color: rgb($sidebar-text, .6) !important;
+    font-size: 14px !important;
+  }
+
+  .mat-list-item:hover {
+    background-color: $sidebar-dark;
+    color: rgb($sidebar-text, .9) !important;
+  }
+
+  .mat-list-item-active {
+    color: rgb(white, .9);
+    background-color: rgb($sidebar-dark, .6);
+  }
+}
+
+
+/*left sidenav style override*/
+mat-sidenav:not(.mat-drawer-opened) {
+  transform: translate3d(0, 0, 0) !important;
+  visibility: visible !important;
+  width: 50px !important;
+  overflow: hidden;
+}
+
+mat-sidenav:not(.mat-drawer-opened) .navigation-item-label {
+  display: none !important;
+}
+
+mat-sidenav:not(.mat-drawer-opened) .home-button {
+  display: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+  mat-sidenav-content {
+    padding-left: 0px;
+  }
+
+  mat-sidenav:not(.mat-drawer-opened) {
+    transform: translate3d(0, 0, 0) !important;
+    width: 0px !important;
+    overflow: hidden;
+  }
+}
+
+mat-icon {
+  color: rgb(white, .8);
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+mat-icon .nav-icon:active {
+  color: white;
+  font-size: 22px;
+}
+
+mat-icon .nav-icon:hover {
+  color: white;
+  font-size: 22px;
+}
+
+mat-accordion {
+
+  background-color: $sidebar !important;
+
+  .mat-expansion-panel-header-title {
+    color: rgb($sidebar-text, .6) !important;
+    font-size: 14px;
+  }
+
+  .mat-expansion-panel {
+    background-color: $sidebar !important;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0 16px;
+  }
+
+  .mat-expansion-panel-header:hover {
+    background-color: rgb($sidebar-dark, .9);
+    color: rgb($sidebar-text, .9) !important;
+  }
+
+  .mat-menu-item {
+    color: rgb($sidebar-text, .6) !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+    color: rgb($sidebar-text, .6) !important;
+    font-size: 14px;
+  }
+}

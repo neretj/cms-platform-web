@@ -1,0 +1,59 @@
+<div id="products" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- HEADER -->
+  <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+    fxLayoutAlign.gt-sm="space-between center">
+
+    <!-- APP TITLE -->
+    <div class="logo mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="logo-icon s-32 mr-16">
+        shopping_basket
+      </mat-icon>
+      <span class="logo-text h1">
+        Products
+      </span>
+    </div>
+    <!-- / APP TITLE -->
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
+
+        <form name="productForm" (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate>
+
+          <mat-form-field appearance="outline">
+            <mat-label for="name">Name</mat-label>
+            <input matInput [(ngModel)]="form.name" name="name" required #name="ngModel">
+            <div *ngIf="productForm.submitted && form.name.invalid">
+              <mat-error *ngIf="name.errors.required">Name is required</mat-error>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label for="description">Description</mat-label>
+            <input matInput [(ngModel)]="form.description" name="description" required #description="ngModel">
+            <div *ngIf="productForm.submitted && form.description.invalid">
+              <mat-error *ngIf="description.errors.required">Description is required</mat-error>
+            </div>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label for="price">Price</mat-label>
+            <input matInput [(ngModel)]="form.price" name="price" required #price="ngModel">
+            <div *ngIf="productForm.submitted && form.price.invalid">
+              <mat-error *ngIf="price.errors.required">Price is required</mat-error>
+            </div>
+          </mat-form-field>
+
+          <app-image-uploader>Upload</app-image-uploader>
+          <button mat-raised-button color="accent" class="submit-button" aria-label="Save"
+            [disabled]="productForm.invalid">
+            Save
+          </button>
+
+        </form>
+    </div>
+  </div>
+
+</div>

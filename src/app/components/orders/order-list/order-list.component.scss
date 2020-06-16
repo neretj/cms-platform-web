@@ -1,0 +1,75 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+
+mat-table {  
+  mat-cell {
+
+    font-size: 14px;
+
+    .status {
+      color: white;
+      padding: 3px;
+      border-radius: 6px;
+
+      mat-icon {
+        font-size: 17px !important;
+      }
+    }
+
+    .status-width {
+      width: 90px;
+    }
+
+    .COMPLETED {
+      color: #90bd90;
+    }
+
+    .PENDING {
+      color: #4ed2ff;
+    }
+
+    .CANCELED {
+      color: #ff4e6a;
+    }
+
+    .totalAmount {
+      min-width: 68px;
+      background-color: aliceblue;
+    }
+
+  }
+}
+
+.mat-header-cell {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+.mat-column-status {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+
+  word-break: break-word !important;
+
+  -ms-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+
+}
+
+mat-card-footer {
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: auto;
+}

@@ -1,0 +1,31 @@
+<mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span ngClass="status {{row.status}}" matTooltip="{{getTooltipMsg(row.status)}}" matTooltipPosition="above">
+                <mat-icon>fiber_manual_record</mat-icon>
+            </span> </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="orderDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{parseDate(row.orderDate)}} </mat-cell>
+    </ng-container>
+
+    <!-- Total Amount Column -->
+    <ng-container matColumnDef="totalAmount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
+        <mat-cell *matCellDef="let row"><span ngClass="totalAmount">{{row.totalAmount}} $</span></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+</mat-table>
+
+<mat-card-footer *ngIf="showPagination" >
+    <mat-paginator [length]="orders?.length" [pageSize]="5"></mat-paginator>
+</mat-card-footer>

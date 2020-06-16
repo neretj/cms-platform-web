@@ -1,0 +1,68 @@
+<div fxFlex="1 0" style="display: block">
+
+  <div style="display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;">
+    <div class="col-xxl-5">
+
+    </div>
+  </div>
+
+</div>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlexAlign="center" class="p-4">
+    <mat-card class="cardHeader">
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlexAlign="center" class="p-4">
+    <mat-card class="cardHeader">
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlexAlign="center" class="p-4">
+    <mat-card class="cardHeader">
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column">
+
+  <div fxFlex="50%" fxLayout="column">
+    <div fxFlexAlign="center" class="p-4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Last Orders</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlexAlign="center" class="p-4">
+      <mat-card class="card2">
+        <mat-card-header>
+          <mat-card-title>Notifications</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-dashboard-notifications></app-dashboard-notifications>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex="auto" fxFlexAlign="center" class="p-4">
+    <mat-card class="card1">
+      <mat-card-header>
+        <mat-card-title>Last Orders</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-dashboard-orders></app-dashboard-orders>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

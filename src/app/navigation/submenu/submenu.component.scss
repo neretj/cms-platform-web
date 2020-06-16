@@ -1,0 +1,65 @@
+/*******************
+ Topbar
+*******************/
+.mat-toolbar-row,
+.mat-toolbar-multiple-rows,
+mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows {
+  height: 50px !important;
+  min-height: 50px !important;
+}
+
+mat-toolbar {
+  // border: 1px solid #000;
+  border-bottom: 0.1px solid lightgray;
+  font-size: 14px !important;
+  color: rgba(130, 130, 130, 0.87);
+
+  a,
+  span {
+    color: darkgrey;
+  }
+
+  a:hover,
+  span:hover {
+    color: dimgrey;
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+    float: left;
+    margin: 5px;
+  }
+
+  li:last-child {
+    margin-right: 20px;
+  }
+
+  li::before {
+    content: ">";
+    color: darkgrey;
+    padding-right: 3px;
+  }
+
+  li:last-child::after {
+    content: "";
+  }
+}
+
+.mat-toolbar {
+  background-color: white;
+}
+
+.router-link-active {
+  color: darkgrey;
+}
+
+.breadcrum-icon {
+  font-size: 20px;
+  line-height: 0;
+  text-align: center;
+}
+
+.breadcrum-icon-container {
+ padding-top: 8px;
+}

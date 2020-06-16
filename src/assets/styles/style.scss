@@ -1,0 +1,142 @@
+/**
+ * Table Of Content
+ *
+ * 	1. Globals
+ *	2. Headers
+ *	3. Navigations
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Custom Templates
+ */
+
+
+// @import 'spinner';
+// @import 'header';
+// @import 'pages';
+// @import 'sidebar';
+
+@import 'variable';
+@import 'responsive';
+@import "../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+
+.mat-drawer-inner-container {
+  overflow-x: hidden !important;
+  min-height: 400px;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+*::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  visibility: hidden;
+}
+
+*::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.scroller {
+  overflow: auto;
+  font: 16px/1.5 Arial;
+  color: #444;
+  border: 1px solid #ddd;
+  margin: 20px;
+  padding: 20px;
+  max-width: 300px;
+  height: 200px;
+}
+
+/***** COMMON ******/
+.mb-md-0 {
+  margin-bottom: 0 !important;
+}
+
+.mr-16 {
+  margin-right: 16px !important;
+}
+
+.mb-24 {
+  margin-bottom: 24px !important;
+}
+
+.mx-md-0 {
+    margin-right: 0!important;
+    margin-left: 0!important;
+}
+
+.mx-32 {
+    margin-right: 32px!important;
+    margin-left: 32px!important;
+}
+
+.mx-16 {
+    margin-right: 16px!important;
+    margin-left: 16px!important;
+}
+
+/***** HEADER ******/
+
+.header.accent {
+  padding: 30px !important;
+}
+
+.header-sub.accent {
+  padding: 10px 30px !important;
+}
+
+/***** FONT STYLES *****/
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin-bottom: 0rem !important;
+}
+
+.logo-text.h1 {
+  font-size: 24px !important;
+}
+
+body.theme-default .accent {
+  color: #fff !important;
+}
+
+/***** ICONS ******/
+
+i.s-32,
+mat-icon.s-32 {
+  font-size: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  line-height: 32px !important;
+}
+
+.mat-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  font-weight: 400 !important;
+}

@@ -1,0 +1,26 @@
+<mat-nav-list>
+    <mat-list-item *ngFor="let notification of notifications">
+        <div fxLayout="row">
+            <span ngClass="status">
+                <mat-icon>
+                    <div *ngIf="notification.type == notifTypes.NEW_ORDER">
+                        shopping_basket
+                    </div>
+                    <div *ngIf="notification.type == notifTypes.ALERT">
+                        report_problem
+                    </div>
+                    <div *ngIf="notification.type == notifTypes.NEW_REGISTER">
+                        supervised_user_circle
+                    </div>
+                    <div *ngIf="notification.type == notifTypes.ACTION_PENDING">
+                        beenhere
+                    </div>
+                </mat-icon>
+            </span>
+            <div ngClass="details" fxLayout="column">
+                <div ngClass="description"><span>{{notification.description}}</span></div>
+                <div ngClass="creationDate"><span>{{parseDate(notification.creationDate)}}</span></div>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-nav-list>
