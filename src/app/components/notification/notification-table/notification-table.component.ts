@@ -44,11 +44,7 @@ export class NotificationTableComponent implements OnInit {
   constructor(private notificationService: NotificationService, private dateAgoPipe: DateAgoPipe, private userUtil: UserUtil, ) {
     const user = userUtil.getUser();
     this.userId = user.id;
-<<<<<<< HEAD
     this.storeId = user.shop.id;
-=======
-    this.storeId = user.storecom.id;
->>>>>>> f913468... new branch develop
   }
 
   ngOnInit() {

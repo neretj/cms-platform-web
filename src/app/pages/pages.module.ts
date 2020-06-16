@@ -15,22 +15,12 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { RouterModule } from '@angular/router';
 import { DashboardModule } from './dashboard/dashboard.module';
-<<<<<<< HEAD
 import { ComponentsModule } from '../components/components.module';
 import { ProductModule } from './product/product.module';
 
 @NgModule({
     declarations: [
         HomeComponent
-=======
-import { ProductPageComponent } from './product/product-page.component';
-import { ComponentsModule } from '../components/components.module';
-
-@NgModule({
-    declarations: [
-        HomeComponent,
-        ProductPageComponent
->>>>>>> f913468... new branch develop
     ],
     imports: [
         RouterModule,
@@ -43,10 +33,7 @@ import { ComponentsModule } from '../components/components.module';
         DashboardModule,
         MaterialComponentsModule,
         ComponentsModule,
-<<<<<<< HEAD
         ProductModule,
-=======
->>>>>>> f913468... new branch develop
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

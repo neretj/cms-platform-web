@@ -1,9 +1,5 @@
 import { Category } from './category';
-<<<<<<< HEAD
 import { Shop } from './shop';
-=======
-import { Store } from './store';
->>>>>>> f913468... new branch develop
 
 // Product Colors
 export type ProductColor = 'white' | 'black' | 'red' | 'green' | 'purple' | 'yellow' | 'blue' | 'gray' | 'orange' | 'pink';
@@ -28,11 +24,7 @@ export interface Product {
   new?: boolean;
   sale?: boolean;
   category?: Category;
-<<<<<<< HEAD
   shop?: Shop;
-=======
-  store?: Store;
->>>>>>> f913468... new branch develop
   isActive?: boolean;
   creationDate?: Date;
   colors?: ProductColor[];
