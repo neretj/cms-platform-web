@@ -1,9 +1,12 @@
 <div id="products" class="page-layout carded fullwidth inner-scroll">
-
   <!-- HEADER -->
-  <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-    fxLayoutAlign.gt-sm="space-between center">
-
+  <div
+    class="header accent"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayout.gt-sm="row"
+    fxLayoutAlign.gt-sm="space-between center"
+  >
     <!-- APP TITLE -->
     <div class="logo mb-md-0" fxLayout="row" fxLayoutAlign="start center">
       <mat-icon class="logo-icon s-32 mr-16">
@@ -14,46 +17,272 @@
       </span>
     </div>
     <!-- / APP TITLE -->
+    <div></div>
   </div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
+  <form
+    name="productForm"
+    #productForm="ngForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <mat-toolbar color="primary" *ngIf="errorMessages.length > 0">
+      <mat-toolbar-row>
+        <mat-icon class="example-icon">info</mat-icon>
+        <span>{{ errorMessages }}</span>
+        <span class="example-spacer"></span>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-        <form name="productForm" (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate>
-
-          <mat-form-field appearance="outline">
-            <mat-label for="name">Name</mat-label>
-            <input matInput [(ngModel)]="form.name" name="name" required #name="ngModel">
-            <div *ngIf="productForm.submitted && form.name.invalid">
-              <mat-error *ngIf="name.errors.required">Name is required</mat-error>
-            </div>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label for="description">Description</mat-label>
-            <input matInput [(ngModel)]="form.description" name="description" required #description="ngModel">
-            <div *ngIf="productForm.submitted && form.description.invalid">
-              <mat-error *ngIf="description.errors.required">Description is required</mat-error>
-            </div>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label for="price">Price</mat-label>
-            <input matInput [(ngModel)]="form.price" name="price" required #price="ngModel">
-            <div *ngIf="productForm.submitted && form.price.invalid">
-              <mat-error *ngIf="price.errors.required">Price is required</mat-error>
-            </div>
-          </mat-form-field>
-
-          <app-image-uploader>Upload</app-image-uploader>
-          <button mat-raised-button color="accent" class="submit-button" aria-label="Save"
-            [disabled]="productForm.invalid">
-            Save
-          </button>
-
-        </form>
+    <div
+      class="buttons-container"
+      fxLayout="row"
+      fxLayoutAlign="end"
+      fxLayout.xs="column"
+    >
+      <button
+        mat-raised-button
+        color="accent"
+        aria-label="Save"
+        [disabled]="productForm.invalid"
+      >
+        Save
+      </button>
     </div>
-  </div>
+    <mat-card class="mat-card-product">
+      <div fxLayout="row" fxLayoutWrap="wrap">
+        <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
+        <!-- Tabs group -->
+        <div fxFlex.gt-sm="100%" fxFlex="100">
+          <mat-tab-group>
+            <!-- Basic Information tab -->
+            <mat-tab label="Basic Information">
+              <mat-card-content>
+                <div class="mt-20">
+                  <mat-form-field
+                    disabled="isSuccessfull"
+                    floatLabel="always"
+                    appearance="outline"
+                  >
+                    <mat-label for="name">Name</mat-label>
+                    <input
+                      placeholder="Product Name"
+                      matInput
+                      [(ngModel)]="form.name"
+                      name="name"
+                      required
+                      #name="ngModel"
+                    />
+                    <div *ngIf="productForm.submitted && form.name.invalid">
+                      <mat-error *ngIf="name.errors.required"
+                        >Name is required</mat-error
+                      >
+                    </div>
+                  </mat-form-field>
 
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="description">Description</mat-label>
+                    <textarea
+                      rows="5"
+                      placeholder="Product Description"
+                      ngClass.gt-md="description"
+                      matInput
+                      [(ngModel)]="form.description"
+                      name="description"
+                      required
+                      #description="ngModel"
+                    ></textarea>
+                    <div
+                      *ngIf="productForm.submitted && form.description.invalid"
+                    >
+                      <mat-error *ngIf="description.errors.required"
+                        >Description is required</mat-error
+                      >
+                    </div>
+                  </mat-form-field>
+
+                  <div fxLayout="row" fxLayout.xs="column">
+                    <div fxFlexAlign="center" ngClass.gt-md="column-card p-4">
+                      <mat-card-title>Category</mat-card-title>
+                      <mat-card-subtitle>
+                        The MatChipInput directive.
+                      </mat-card-subtitle>
+                      <mat-form-field
+                        disabled="isSuccessfull"
+                        appearance="outline"
+                      >
+                        <mat-label for="category">Category</mat-label>
+                        <mat-select name="category" [(ngModel)]="form.category">
+                          <mat-option
+                            *ngFor="let category of categories"
+                            [value]="category"
+                          >
+                            {{ category.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div fxFlexAlign="center" ngClass.gt-md="column-card p-4">
+                      <mat-card-title>Tags</mat-card-title>
+                      <mat-card-subtitle>
+                        The MatChipInput directive.
+                      </mat-card-subtitle>
+                      <mat-form-field
+                        disabled="isSuccessfull"
+                        appearance="outline"
+                        floatLabel="always"
+                      >
+                        <mat-label for="name">Tags</mat-label>
+                        <mat-chip-list #chipList>
+                          <mat-chip
+                            *ngFor="let tag of form.tags"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(tag)"
+                          >
+                            {{ tag.name }}
+                            <mat-icon matChipRemove *ngIf="removable"
+                              >cancel</mat-icon
+                            >
+                          </mat-chip>
+                          <input
+                            placeholder="Tags"
+                            placeholder="New tag..."
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)"
+                          />
+                        </mat-chip-list>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+
+            <!-- Images tab -->
+            <mat-tab label="Images">
+              <mat-card-content>
+                <div class="col-md-3">
+                  <app-image-uploader>Upload</app-image-uploader>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+
+            <!-- Pricing tab -->
+            <mat-tab label="Pricing">
+              <mat-card-content>
+                <div class="col-md-3">
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="price">Total price</mat-label>
+                    <input
+                      placeholder="Price"
+                      matInput
+                      type="number"
+                      (change)="onTaxRateChange('totalprice')"
+                      [(ngModel)]="form.price"
+                      name="price"
+                      required
+                      #price="ngModel"
+                    />
+                    <div *ngIf="productForm.submitted && form.price.invalid">
+                      <mat-error *ngIf="price.errors.required"
+                        >Price is required</mat-error
+                      >
+                    </div>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="priceWithoutTaxes"
+                      >Price without taxes</mat-label
+                    >
+                    <input
+                      placeholder="Price with no taxes"
+                      matInput
+                      type="number"
+                      (change)="onTaxRateChange('baseprice')"
+                      [(ngModel)]="form.priceWithoutTaxes"
+                      name="priceWithoutTaxes"
+                      #priceWithoutTaxes="ngModel"
+                    />
+                    <div
+                      *ngIf="
+                        productForm.submitted && form.priceWithoutTaxes.invalid
+                      "
+                    >
+                      <mat-error *ngIf="priceWithoutTaxes.errors.required"
+                        >Base price is required</mat-error
+                      >
+                    </div>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="taxrate">Tax rate</mat-label>
+                    <input
+                      placeholder="Tax rate"
+                      matInput
+                      type="number"
+                      (change)="onTaxRateChange('taxrate')"
+                      [(ngModel)]="form.taxrate"
+                      name="taxrate"
+                      #taxrate="ngModel"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="discount">Discount</mat-label>
+                    <input
+                      placeholder="Price discount"
+                      matInput
+                      type="number"
+                      [(ngModel)]="form.discount"
+                      name="discount"
+                      #discount="ngModel"
+                    />
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+
+            <!-- Inventory tab -->
+            <mat-tab label="Inventory">
+              <mat-card-content>
+                <div class="col-md-3">
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="inventoryCode">Inventory code</mat-label>
+                    <input
+                      placeholder="Inventory code"
+                      matInput
+                      [(ngModel)]="form.inventoryCode"
+                      name="inventoryCode"
+                      #inventoryCode="ngModel"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label for="stock">Stock</mat-label>
+                    <input
+                      placeholder="Stock"
+                      matInput
+                      type="number"
+                      [(ngModel)]="form.stock"
+                      name="stock"
+                      #stock="ngModel"
+                    />
+                    <div *ngIf="productForm.submitted && form.stock.invalid">
+                      <mat-error *ngIf="stock.errors.required"
+                        >Stock is required</mat-error
+                      >
+                    </div>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </mat-card>
+  </form>
 </div>

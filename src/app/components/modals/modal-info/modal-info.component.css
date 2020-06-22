@@ -1,0 +1,9 @@
+.mat-dialog-container {
+  position: fixed !important;
+  top: 10% !important;
+  left: 18.5% !important;
+  z-index: 1050 !important;
+  width: 80% !important;
+  height: 80% !important;
+  margin-left: -10% !important;
+}

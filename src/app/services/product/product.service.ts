@@ -51,6 +51,12 @@ export class ProductService implements Resolve<any> {
     });
   }
 
+  removeProducts(products: Product[]) {
+    return this._httpClient.post(API_URL + 'removeproducts', products).pipe(
+      map(res => res)
+    );
+  }
+
   getAllProducts(page: number, size: number) {
     return this._httpClient.get(API_URL + 'all', {
       params: new HttpParams()
@@ -90,10 +96,7 @@ export class ProductService implements Resolve<any> {
   }
 
   updateProduct(product: Product) {
-    return this._httpClient.put(API_URL + 'update/id', {
-      params: new HttpParams()
-        .set('product', product.toString())
-    }).pipe(
+    return this._httpClient.put(API_URL + 'update/' + product.id, product).pipe(
       map(res => res['content'])
     );
   }

@@ -9,7 +9,6 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ProductListComponent } from './product/product-list/product-list.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { MaterialModule } from '../material.module';
 import { MaterialComponentsModule } from '../pages/material-component/material.module';
@@ -17,20 +16,21 @@ import { AuthInterceptor } from '../helpers/auth.interceptor';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { NotificationTableComponent } from './notification/notification-table/notification-table.component';
 import { ImageUploaderComponent } from './uploader/image-uploader-component/image-uploader.component';
+import { ModalInfoComponent } from './modals/modal-info/modal-info.component';
 
 @NgModule({
     declarations: [
-        ProductListComponent,
         OrderListComponent,
         NotificationListComponent,
         NotificationTableComponent,
-        ImageUploaderComponent
+        ImageUploaderComponent,
+        ModalInfoComponent
     ],
     exports: [
-        ProductListComponent,
         OrderListComponent,
         NotificationListComponent,
-        ImageUploaderComponent
+        ImageUploaderComponent,
+        ModalInfoComponent
     ],
     imports: [
         RouterModule,
@@ -47,6 +47,9 @@ import { ImageUploaderComponent } from './uploader/image-uploader-component/imag
                 deps: [HttpClient]
             }
         })
+    ],
+    entryComponents: [
+        ModalInfoComponent
     ],
     providers: [{
         provide: ErrorStateMatcher,

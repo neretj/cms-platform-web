@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 .product-list-filter {
   width: 100%;
@@ -25,7 +25,8 @@
   max-width: 480px;
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
   background: #fff;
 
   .search {
@@ -44,5 +45,30 @@
       outline: none;
     }
   }
-  
+}
+
+.product-list-table {
+  .mat-column-id,
+  .mat-column-selector,
+  .mat-column-details,
+  .mat-column-update,
+  .mat-column-isActive {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 6% !important;
+    width: 6% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-selector {
+    overflow: initial;
+  }
 }

@@ -17,8 +17,8 @@
 // @import 'pages';
 // @import 'sidebar';
 
-@import 'variable';
-@import 'responsive';
+@import 'variable.scss';
+@import 'responsive.scss';
 @import "../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
 
 .mat-drawer-inner-container {
@@ -88,6 +88,7 @@
 
 .header.accent {
   padding: 30px !important;
+  background-color: $primary-light;
 }
 
 .header-sub.accent {

@@ -1,9 +1,12 @@
 <div id="products" class="page-layout carded fullwidth inner-scroll">
-
   <!-- HEADER -->
-  <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-    fxLayoutAlign.gt-sm="space-between center">
-
+  <div
+    class="header accent"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayout.gt-sm="row"
+    fxLayoutAlign.gt-sm="space-between center"
+  >
     <!-- APP TITLE -->
     <div class="logo mb-md-0" fxLayout="row" fxLayoutAlign="start center">
       <mat-icon class="logo-icon s-32 mr-16">
@@ -16,77 +19,189 @@
     <!-- / APP TITLE -->
   </div>
 
-  <div class="header-sub accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-    fxLayoutAlign.gt-sm="space-between center">
+  <mat-toolbar color="primary" *ngIf="alertMessages.length > 0">
+    <mat-toolbar-row>
+      <mat-icon class="example-icon">info</mat-icon>
+      <span>{{ alertMessages }}</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-toolbar color="warn" *ngIf="errorMessages.length > 0">
+    <mat-toolbar-row>
+      <mat-icon class="example-icon">info</mat-icon>
+      <span>{{ errorMessages }}</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div
+    class="header-sub accent"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayout.gt-sm="row"
+    fxLayoutAlign.gt-sm="space-between center"
+  >
     <!-- FILTER -->
     <div class="product-list-filter mx-md-0">
       <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
         <mat-icon class="logo-icon mr-16">search</mat-icon>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Filter"
+        />
       </div>
     </div>
     <!-- / FILTER -->
-
-    <!-- ADD BUTTON -->
-    <button mat-raised-button [routerLink]="'/product/create'" class="add-product-button fuse-white mt-24 mt-md-0">
-      <span>ADD NEW PRODUCT</span>
-    </button>
-    <!-- / ADD BUTTON -->
+    <div
+      class="header-sub accent"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayout.gt-sm="row"
+      fxLayoutAlign.gt-sm="space-between center"
+    >
+      <div class="pl-4">
+        <button
+          mat-raised-button
+          color="accent"
+          aria-label="Remove"
+          [disabled]="selection.selected.length === 0"
+          (click)="removeProducts()"
+        >
+          Remove
+        </button>
+      </div>
+      <div class="pl-4">
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="'/product/create'"
+          class="add-product-button fuse-white mt-24 mt-md-0"
+        >
+          <span>ADD NEW PRODUCT</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- / HEADER -->
 
   <div class="product-list-table mx-16 mat-elevation-z8">
-
     <mat-table [dataSource]="dataSource" matSort>
+      <!-- Selector Column -->
+      <ng-container matColumnDef="selector">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
       </ng-container>
 
       <!-- FirstName Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
       </ng-container>
 
       <!-- Lastname Column -->
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.price}} $</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Price
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.price | currency: "EUR":true }}
+        </mat-cell>
       </ng-container>
 
       <!-- Country Column -->
       <ng-container matColumnDef="creationDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Creation Date </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.creationDate}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Creation Date
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.creationDate | date: "shortDate" }}
+        </mat-cell>
       </ng-container>
 
       <!-- City Column -->
       <ng-container matColumnDef="store">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Store name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.store ? row.store.name : ''}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Store name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.shop ? row.shop.name : "" }}
+        </mat-cell>
       </ng-container>
 
       <!-- City Column -->
       <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Category name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.category.name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Category name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.category ? row.category.name : "" }}
+        </mat-cell>
       </ng-container>
 
       <!-- City Column -->
       <ng-container matColumnDef="isActive">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.isActive}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Active
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div *ngIf="row.active">
+            <button
+              mat-icon-button
+              color="accent"
+              (click)="changeStatus(row.id, !row.active)"
+            >
+              <mat-icon class="mat-18">check_circle</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="!row.active">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="changeStatus(row.id, !row.active)"
+            >
+              <mat-icon class="mat-18" color="primary">check_circle</mat-icon>
+            </button>
+          </div>
+        </mat-cell>
       </ng-container>
 
       <!-- Detais Column -->
       <ng-container matColumnDef="details">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Details
+        </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" (click)="redirectToDetails(row.id)">
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="redirectToDetails(row.id)"
+          >
             <mat-icon class="mat-18">reorder</mat-icon>
           </button>
         </mat-cell>
@@ -94,30 +209,24 @@
 
       <!-- Update Column -->
       <ng-container matColumnDef="update">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Update </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Edit
+        </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" (click)="redirectToUpdate(row.id)">
-            <mat-icon class="mat-18">system_update</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-
-      <!-- Delete Column -->
-      <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" (click)="redirectToDelete(row.id)">
-            <mat-icon class="mat-18">delete</mat-icon>
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="redirectToUpdate(row.id)"
+          >
+            <mat-icon class="mat-18">edit</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
     </mat-table>
 
     <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
   </div>
-
 </div>
