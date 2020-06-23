@@ -11,14 +11,13 @@
  *	8. Custom Templates
  */
 
-
 // @import 'spinner';
 // @import 'header';
 // @import 'pages';
 // @import 'sidebar';
 
-@import 'variable.scss';
-@import 'responsive.scss';
+@import "variable.scss";
+@import "responsive.scss";
 @import "../styles/icons/material-design-iconic-font/css/materialdesignicons.min.css";
 
 .mat-drawer-inner-container {
@@ -70,28 +69,33 @@
 }
 
 .mx-md-0 {
-    margin-right: 0!important;
-    margin-left: 0!important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 .mx-32 {
-    margin-right: 32px!important;
-    margin-left: 32px!important;
+  margin-right: 32px !important;
+  margin-left: 32px !important;
 }
 
 .mx-16 {
-    margin-right: 16px!important;
-    margin-left: 16px!important;
+  margin-right: 16px !important;
+  margin-left: 16px !important;
 }
 
 /***** HEADER ******/
 
-.header.accent {
+.header {
   padding: 30px !important;
-  background-color: $primary-light;
 }
 
-.header-sub.accent {
+.header.accent {
+  background-color: mat-color($accent-light);
+}
+.header.primary {
+  background-color: mat-color($primary-light);
+}
+.header-sub {
   padding: 10px 30px !important;
 }
 

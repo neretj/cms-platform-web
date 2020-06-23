@@ -1,32 +1,32 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
-
 
 // FONTS
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
-$bodyfont: 'Roboto', sans-serif;
-$headingfont: 'Roboto', sans-serif;
+$bodyfont: "Roboto", sans-serif;
+$headingfont: "Roboto", sans-serif;
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Poppins, sans-serif'
+  $font-family: "Poppins, sans-serif",
 );
 
 @include mat-core($custom-typography);
 
 // MATERIAL COLORS
+@import "theme.scss";
 
 /* Primary */
-$primary: mat-palette($mat-teal, 100);
-$primary-light: #e5ffff;
-$primary-dark: #82ada9;
+$primary: mat-palette($md-darkblue, 500);
+$primary-light: mat-palette($md-darkblue, 100);
+$primary-dark: mat-palette($md-darkblue, 900);
 
 /* Secondary */
-$accent: mat-palette($mat-teal, 700);
-$accent-light: #48a999;
-$accent-dark: #004c40;
+$accent: mat-palette($md-mustard, 500);
+$accent-light: mat-palette($md-mustard, 100);
+$accent-dark: mat-palette($md-mustard, 900);
 
 /* Others */
 $warn: mat-palette($mat-red, 400);
@@ -36,7 +36,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 $background: map-get($theme, background);
 $foreground: map-get($theme, foreground);
 
-$dark-theme: mat-light-theme($primary-dark, $accent-dark, $warn);
+$dark-theme: mat-dark-theme($primary-dark, $accent-dark, $warn);
 $background: map-get($dark-theme, background);
 $foreground: map-get($dark-theme, foreground);
 
@@ -48,12 +48,28 @@ $foreground: map-get($dark-theme, foreground);
 /**** COLORS *****/
 
 /* Sidebar */
-$sidebar: #00233f;
-$sidebar-dark: #00001a;
-$sidebar-light: $primary-light;
-$sidebar-alt: $primary-dark;
+$sidebar: mat-color($primary);
+$sidebar-dark: mat-color($primary-dark);
+$sidebar-light: mat-color($primary-light);
+
+$sidebar-top: mat-color($primary-dark);
+$sidebar-hover: mat-color($accent);
+$sidebar-active: mat-color($accent);
+
+/*
+$sidebar: #026673fa;
+$sidebar-dark: #024b54fa;
+$sidebar-light: #0498abfa;
+
+$sidebar-top: #003138fa;
+$sidebar-hover: #e24e42;
+$sidebar-active: #e24e42;
+*/
+
 $sidebar-text: white;
 $sidebar-icons: white;
+$sidebar-text-hover: black;
+$sidebar-icons-hover: black;
 
 /* Topbar */
 $topbar: #f5f5f5;
